@@ -68,12 +68,53 @@ def sum_list(list):
 
 ### Example 3:
 
+Convert decimal to different base
+
 ```Python
 def tostr(n,base):
-  digit='0123456789ABCDEF'
+  digits='0123456789ABCDEF'
   if n<base:
     return digits[n]
   return tostr(n // base,base) + digits[n % base]
+```
+
+### Example 4:
+
+Check Palindrome
+
+```Python
+def reverseDigits(num) :  
+
+    rev_num = 0;  
+    while (num > 0) :
+        rev_num = rev_num * 10 + num % 10
+        num = num // 10
+
+    return rev_num  
+
+# Function to check if n is Palindrome
+def isPalindrome(n) :
+
+    # get the reverse of n  
+    rev_n = reverseDigits(n);  
+
+    # Check if rev_n and n are same or not.  
+    if (rev_n == n) :
+        return 1
+    else :
+        return 0
+```
+
+```Python
+def pallidnrome(num):
+    s=str(num)
+    if len(s) < 1:
+        return True
+    else:
+        if s[0] == s[-1]:
+            return pallidnrome(s[1:-1])
+        else:
+            return False
 ```
 
 # Insertion Sort
