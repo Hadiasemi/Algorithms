@@ -30,6 +30,7 @@ header-includes:
 ---
 \thispagestyle{fancy}
 
+
 [Book](https://runestone.academy/runestone/books/published/pythonds/index.html)
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
@@ -80,41 +81,75 @@ def tostr(n,base):
 
 ### Example 4:
 
-Check Palindrome
+#### Check Palindrome
+  * Recursive:
 
-```Python
-def reverseDigits(num) :  
+  ```Python
+  def pallidnrome_recursive(num):
+      s=str(num)
+      if len(s) < 1:
+          return True
+      else:
+          if s[0] == s[-1]:
+              return pallidnrome_recursive(s[1:-1])
+          else:
+              return False
+  ```
+  * Second Way:
 
-    rev_num = 0;  
-    while (num > 0) :
-        rev_num = rev_num * 10 + num % 10
-        num = num // 10
+  ```Python
+  def reverseDigits(num) :  
 
-    return rev_num  
+      rev_num = 0;  
+      while (num > 0) :
+          rev_num = rev_num * 10 + num % 10
+          num = num // 10
 
-# Function to check if n is Palindrome
-def isPalindrome(n) :
+      return rev_num  
 
-    # get the reverse of n  
-    rev_n = reverseDigits(n);  
+  # Function to check if n is Palindrome
+  def isPalindrome(n) :
 
-    # Check if rev_n and n are same or not.  
-    if (rev_n == n) :
-        return 1
-    else :
-        return 0
+      # get the reverse of n  
+      rev_n = reverseDigits(n);  
+
+      # Check if rev_n and n are same or not.  
+      if (rev_n == n) :
+          return 1
+      else :
+          return 0
 ```
 
+
+
+### Example 5:
+
+#### Fibonacci sequence:
+
+  * Recursive:
 ```Python
-def pallidnrome(num):
-    s=str(num)
-    if len(s) < 1:
-        return True
+def fib_recursive(num):
+    if num <=1:
+        return num
+    return fib(num-1)+fib(num-2)
+```
+  * Loop:
+```Python    
+def fib_loop(num):
+    n1,n2=0,1
+    count=0
+    if num==0:
+        return 0
+    elif num==1:
+        return 1
     else:
-        if s[0] == s[-1]:
-            return pallidnrome(s[1:-1])
-        else:
-            return False
+        while count <num:
+            nth=n1+n2
+            n1=n2  # swap
+            n2=nth # swap
+            count +=1
+        return n1
+
 ```
 
 # Insertion Sort
@@ -199,7 +234,7 @@ print(myList)
 ## Code:
 
  ```Python
- def selection_sort(A):
+def selection_sort(A):
      # Traverse through all array elements
      for i in range(len(A)):
 
