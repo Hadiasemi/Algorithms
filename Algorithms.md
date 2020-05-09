@@ -310,19 +310,6 @@ class Stack:
            MUST have O(1) performance'''
         return self.num_items
 
-if __name__ == "__main__":
-
-    stack1 = Stack()
-    print(stack1)
-    stack1.push(1)
-    stack1.push(2)
-    print(stack1)
-
-    stack2 = Stack(stack1.top)
-
-    print(stack1 == stack2)
-    stack2.push(3)
-    print(stack1 == stack2)
 ```
 # Queue:
 
@@ -402,40 +389,7 @@ class Queue:
        Must be O(1)"""
        return self.num_items
 
-if __name__ == "__main__":
-    q1 = Queue(10)
-    print(q1)
-    q1.enqueue(1)
-    q1.enqueue(2)
-    q1.enqueue(3)
-    print(q1)
-    q2 = Queue(10)
-    q2.enqueue(1)
-    q2.enqueue(2)
-    q2.enqueue(3)
-    print(q1==q2)
-    print(q2.dequeue())
-    print(q2)
-    print(q1 == q2)
-    print(q2.dequeue())
-    print(q2.dequeue())
-    q2.enqueue(4)
-    q2.enqueue(5)
-    q2.enqueue(6)
-    q2.enqueue(7)
-    q2.enqueue(8)
-    q2.enqueue(1)
-    q2.enqueue(2)
-    q2.enqueue(3)
-    print(q2.items)
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.items,q2.front,q2.rear,q2.get_items())
-    print(q2)
-    print(q2==q1)
+
 
 ```
 ## NodeList:
@@ -536,40 +490,7 @@ class Queue:
         Must be O(1)"""
         return self.num_items
 
-if __name__ == "__main__":
-    q1 = Queue()
-    print(q1)
-    q1.enqueue(1)
-    q1.enqueue(2)
-    q1.enqueue(3)
-    print(q1)
-    q2 = Queue()
-    q2.enqueue(1)
-    q2.enqueue(2)
-    q2.enqueue(3)
-    print(q1 == q2)
-    print(q2.dequeue())
-    print(q2)
-    print(q1 == q2)
-    print(q2.dequeue())
-    print(q2.dequeue())
-    q2.enqueue(4)
-    q2.enqueue(5)
-    q2.enqueue(6)
-    q2.enqueue(7)
-    q2.enqueue(8)
-    q2.enqueue(1)
-    q2.enqueue(2)
-    q2.enqueue(3)
-    print(q2)
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2.dequeue())
-    print(q2)
-    print(q2 == q1)
-    print(q2.dequeue())
+
 
 ```
 
