@@ -572,6 +572,146 @@ if __name__ == "__main__":
     print(q2.dequeue())
 
 ```
+
+# Doubly Link List:
+
+```Python
+class Node:
+    """Node for use with doubly-linked list"""
+    def __init__(self, item, next=None, prev=None):
+        self.item = item  # item held by Node
+        self.next = next  # reference to next Node
+        self.prev = prev  # reference to previous Node
+
+class OrderedList:
+    """A doubly-linked ordered list of integers,
+    from lowest (head of list, sentinel.next) to highest (tail of list, sentinel.prev)"""
+    def __init__(self, sentinel=None):
+        """Use only a sentinel Node. No other instance variables"""
+        self.sentinel = Node(None)
+        self.sentinel.next = self.sentinel
+        self.sentinel.prev = self.sentinel
+
+    def is_empty(self):
+        """Returns back True if OrderedList is empty"""
+        return self.sentinel.next==self.sentinel
+
+
+
+    def add(self, item):
+        """Adds an item to OrderedList, in the proper location based on ordering of items
+        from lowest (at head of list) to highest (at tail of list)
+        If item is already in list, do not add again (no duplicate items)"""
+        cur=self.sentinel.next
+        while cur is not self.sentinel and item >cur.item:
+            cur=cur.next
+        if cur.item != item:
+            temp=Node(item)
+            temp.prev=cur.prev
+            temp.next=cur
+            cur.prev.next=temp
+            cur.prev=temp
+
+
+    def remove(self, item):
+        """Removes an item from OrderedList. If item is removed (was in the list) returns True
+        If item was not removed (was not in the list) returns False"""
+        cur=self.sentinel
+        if self.is_empty():
+            return False
+        else:
+            while cur.next != self.sentinel:
+                if cur.next.item == item:
+                    cur.next=cur.next.next
+                    cur.next.prev=cur
+                    return True
+                else:
+                    cur=cur.next
+            return False
+
+
+    def index(self, item):
+        """Returns index of an item in OrderedList (assuming head of list is index 0).
+        If item is not in list, return None"""
+        if self.is_empty():
+            raise IndexError
+        cur=self.sentinel.next
+        num_item =0
+        while cur.item != item:
+            cur=cur.next
+            num_item +=1
+        return num_item
+
+
+    def pop(self, index):
+        """Removes and returns item at index (assuming head of list is index 0).
+        If index is negative or >= size of list, raises IndexError"""
+        cur = self.sentinel.next
+        num_itemes = 0
+        if self.is_empty():
+            raise IndexError
+        if index < 0:
+            raise IndexError
+
+        while cur != self.sentinel and num_itemes < index:
+            cur = cur.next
+            num_itemes += 1
+        if cur == self.sentinel:
+            raise IndexError
+        else:
+            ret_val = cur.item
+            cur.next.prev = cur.prev
+            cur.prev.next = cur.next
+            return ret_val
+
+
+    def search(self, item):
+        """Searches OrderedList for item, returns True if item is in list, False otherwise  recursion"""
+        def helper(cur,values):
+            if cur == self.sentinel:
+                return False
+            if cur.item> values:
+                return False
+            elif cur.item == values:
+                return True
+            else:
+                return helper(cur.next,values)
+        cur=self.sentinel.next
+        return helper(cur,item)
+
+    def python_list(self):
+        """Return a Python list representation of OrderedList, from head to tail
+        For example, list with integers 1, 2, and 3 would return [1, 2, 3]"""
+        list=[]
+        cur=self.sentinel.next
+        while  cur is not self.sentinel:
+            list.append(cur.item)
+            cur=cur.next
+        return list
+
+    def python_list_reversed(self):
+        """Return a Python list representation of OrderedList, from tail to head, using recursion
+        For example, list with integers 1, 2, and 3 would return [3, 2, 1] recursion"""
+        def helper(cur):
+
+            if cur.next ==self.sentinel:
+                return [cur.item]
+            else:
+                return helper(cur.next)+[cur.item]
+        cur=self.sentinel.next
+        return helper(cur)
+
+
+    def size(self):
+        """Returns number of items in the OrderedList. O(n) is OK recursion"""
+        def helper(cur):
+            if cur == self.sentinel:
+                return 0
+            return helper(cur.next)+1
+        cur=self.sentinel
+        return helper(cur.next)
+
+```
 # Insertion Sort
 
 
