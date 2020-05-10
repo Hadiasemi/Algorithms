@@ -312,6 +312,7 @@ class Stack:
 
 ```
 # Queue(FIFO):
+![Queue](Data_Queue.png)
 
 ## Array:
 
