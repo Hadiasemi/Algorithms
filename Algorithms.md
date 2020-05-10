@@ -150,7 +150,7 @@ def fib_loop(num):
         return n1
 
 ```
-# Stack:
+# Stack(LIFO):
 
 ## Stack Array:
 
@@ -311,7 +311,7 @@ class Stack:
         return self.num_items
 
 ```
-# Queue:
+# Queue(FIFO):
 
 ## Array:
 
