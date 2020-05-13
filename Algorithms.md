@@ -672,15 +672,27 @@ def height(self,node):
 
 ## Insertion:
 
-```Python
+# Sorting:
 
+## Bubble Sort:
+
+![Bubble Sort](bubble-short.png){width=70%}
+
+```Python
+def bubble_sort(A):
+    for k in range(len(A)):
+        flag=0 # check if one time run but we did not swap anything for code efficiency
+        for i in range(len(A)-k-1):
+            if A[i]>A[i+1]:
+                A[i],A[i+1]=A[i+1],A[i]
+                flag=1
+        if flag==0:
+            break
 ```
 
-# Insertion Sort
+## Insertion Sort:
 
-
-![Insertion Sort](1.png)
-
+![Insertion Sort](1.png?classes=float-left)
 
 ## Code:
 
@@ -698,11 +710,11 @@ def insertion_sort(A):
 
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
-# Merge Sort:
+## Merge Sort:
 
-![Merge Sort](2.png){ width=40%}
+![Merge Sort](2.png){ width=60%}
 
-## Code:
+### Code:
 
  ```Python
  def mergeSort(myList):
@@ -755,9 +767,7 @@ print(myList)
 
  $T(n)=c_1+2T(\frac{n}{2})+c.n$
 
-# Selection Sort:
-
-## Code:
+### Code:
 
  ```Python
 def selection_sort(A):
