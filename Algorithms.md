@@ -13,6 +13,7 @@ urlcolor: blue
 geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
 
 header-includes:
+
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
 - \fancyfoot{}
@@ -312,7 +313,13 @@ class Stack:
 
 ```
 # Queue(FIFO):
-![Queue](Data_Queue.png)
+
+
+
+![Queue](Data_Queue.png){width=30%}
+
+
+
 
 ## Array:
 
@@ -634,6 +641,41 @@ class OrderedList:
         return helper(cur.next)
 
 ```
+
+# Binary Tree:
+
+## Three type of trees:
+
+* Full: leaf with no children or with to leaves
+* Complete: fill up top to bottom and left to right
+* Perfect: all leaves and nodes are at the same level
+
+![Trees](4.png)
+
+## Traversal:
+
+* **Pre Order** : n l r
+* **In Order** :  l n r
+* **Post Order**: l r n
+
+<!-- ![Traversal](4.png) -->
+## Calculate the Hight:
+
+```Python
+def height(self,node):
+  if node==None:
+    return 0
+  left=self.height(node.left)
+  right=self.height(node.right)
+  return 1 + max(left,right)
+```
+
+## Insertion:
+
+```Python
+
+```
+
 # Insertion Sort
 
 
@@ -657,6 +699,7 @@ def insertion_sort(A):
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
 # Merge Sort:
+
 ![Merge Sort](2.png){ width=40%}
 
 ## Code:
