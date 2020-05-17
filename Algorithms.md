@@ -36,6 +36,15 @@ header-includes:
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
 
+# The Steps for analyzing Algorithm:
+
+  * time
+  * space
+  * network transformation
+  * power consumption
+  * cpu registers
+
+
 # Recursion :
 
 Recursion is the process of defining a problem (or the solution to a problem) in terms of (a simpler version) itself.
@@ -733,6 +742,10 @@ The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
 ## Selection Sort:
 ![Selection Sort:](selec.jpg){width=50%}
+
+* Find the minimum value in the list
+* Swap it with the value in the first position
+* Repeat the steps above for the remainder of the list (starting at the second position and advancing each time)
 
 ### Code:
 
