@@ -165,6 +165,7 @@ def search(item,node):
 ```
 
 # Stack(LIFO):
+![Common Data Structure Operation](table1.png)
 
 ## Stack Array:
 
@@ -681,20 +682,19 @@ def height(self,node):
   left=self.height(node.left)
   right=self.height(node.right)
   return 1 + max(left,right)
+
 ```
+\cleardoublepage
 
 <!-- ## Insertion: -->
 
 # Sorting:
-
-![Sorting Table:](table.jpg)
+![Sorting Table:](table.jpg){width=80%}
 
 [Summwery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
-
-![Bubble Sort](bubble-short.png){width=70%}
-
+![Bubble Sort](bubble-short.png){width=60%}
 ```Python
 def bubble_sort(A):
     for k in range(len(A)):
@@ -708,10 +708,9 @@ def bubble_sort(A):
 ```
 
 ## Insertion Sort:
+![Insertion Sort](1.png)
 
-![Insertion Sort](1.png?classes=float-left)
-
-## Code:
+### Code:
 
 ``` Python
 def insertion_sort(alist):
@@ -733,7 +732,7 @@ def insertion_sort(alist):
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
 ## Selection Sort:
-![Selection Sort:](selec.jpg){width=70%}
+![Selection Sort:](selec.jpg){width=50%}
 
 ### Code:
 
@@ -818,6 +817,9 @@ print(myList)
 The time complexity in best way is **$O(nlog(n))$** and the worst case scenario is when is whole list already sorted so the time complexity is **$O(n^2)$**.
 
 ![Quick Sort](QuickSort2.png)
+
+### Code:
+
 ```Python
 def partition(arr,low,high):
     i = ( low-1 )         # index of smaller element
