@@ -670,13 +670,9 @@ def height(self,node):
   return 1 + max(left,right)
 ```
 
-<!-- ## Insertion: -->
+## Insertion:
 
 # Sorting:
-
-![Sorting Table:](table.jpg)
-
-[Summwery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
 
@@ -694,54 +690,24 @@ def bubble_sort(A):
             break
 ```
 
-## Insertion Sort:
-
+## Insertion Sort
 ![Insertion Sort](1.png?classes=float-left)
 
 ## Code:
 
 ``` Python
-def insertion_sort(alist):
-    com = 0 # How many comparison the code do
-    for i in range (1, len (alist)):
-        value = alist[i]
-        j = i - 1
-        while j >= 0:
-            com += 1
-            if value<alist[j]:
-                alist[j + 1] = alist[j]
-                alist[j] = value
-                j = j - 1
-            else:
-                break
-    return com
+def insertion_sort(A):
+    for j in range(2,len(A)):
+        key=A[j]
+        i=j-1
+        while i>0 and A[i]>key:
+            A[i+1]=A[i]
+            i=i-1
+        A[i+1]=key
+        return A
 ```
 
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
-
-## Selection Sort:
-![Selection Sort:](selec.jpg){width=70%}
-
-### Code:
-
- ```Python
-def selection_sort(A):
-     # Traverse through all array elements
-     for i in range(len(A)):
-
-         # Find the minimum element in remaining  
-         # unsorted array
-         min_idx = i
-         for j in range(i+1, len(A)):
-             if A[min_idx] > A[j]:
-                 min_idx = j
-
-         # Swap the found minimum element with  
-         # the first element         
-         A[i], A[min_idx] = A[min_idx], A[i]
-     return A
-
- ```
 
 ## Merge Sort:
 
@@ -800,44 +766,23 @@ print(myList)
 
  $T(n)=c_1+2T(\frac{n}{2})+c.n$
 
-## Quick Sort:
+### Code:
 
-The time complexity in best way is **$O(nlog(n))$** and the worst case scenario is when is whole list already sorted so the time complexity is **$O(n^2)$**.
+ ```Python
+def selection_sort(A):
+     # Traverse through all array elements
+     for i in range(len(A)):
 
-![Quick Sort](QuickSort2.png)
-```Python
-def partition(arr,low,high):
-    i = ( low-1 )         # index of smaller element
-    pivot = arr[high]     # pivot
+         # Find the minimum element in remaining  
+         # unsorted array
+         min_idx = i
+         for j in range(i+1, len(A)):
+             if A[min_idx] > A[j]:
+                 min_idx = j
 
-    for j in range(low , high):
+         # Swap the found minimum element with  
+         # the first element         
+         A[i], A[min_idx] = A[min_idx], A[i]
+     return A
 
-        # If current element is smaller than or
-        # equal to pivot
-        if   arr[j] <= pivot:
-
-            # increment index of smaller element
-            i = i+1
-            arr[i],arr[j] = arr[j],arr[i]
-
-    arr[i+1],arr[high] = arr[high],arr[i+1]
-    return ( i+1 )
-
-# The main function that implements QuickSort
-# arr[] --> Array to be sorted,
-# low  --> Starting index,
-# high  --> Ending index
-
-# Function to do Quick sort
-def quickSort(arr,low,high):
-    if low < high:
-
-        # pi is partitioning index, arr[p] is now
-        # at right place
-        pi = partition(arr,low,high)
-
-        # Separately sort elements before
-        # partition and after partition
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
-```
+ ```
