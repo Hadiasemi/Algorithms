@@ -151,6 +151,19 @@ def fib_loop(num):
         return n1
 
 ```
+
+### Example 6(Check if the item in the node list):
+
+```Python
+def search(item,node):
+  if node.item==item:
+    return True
+  elif node==None:
+    return False
+  else:
+     returnsearch(item,node.rest)
+```
+
 # Stack(LIFO):
 
 ## Stack Array:
