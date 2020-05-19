@@ -176,7 +176,8 @@ def search(item,node):
 ```
 
 # Stack(LIFO):
-![Common Data Structure Operation](table1.png)
+
+![Common Data Structure Operation](image/table1.png)
 
 ## Stack Array:
 
@@ -341,7 +342,7 @@ class Stack:
 
 
 
-![Queue](Data_Queue.png){width=30%}
+![Queue](image/Data_Queue.png){width=30%}
 
 
 
@@ -671,7 +672,7 @@ class OrderedList:
 
 The hight of binary tree is $log(n)$
 
-![BigO for Binary Tree](binary.jpg){width=60%}
+![BigO for Binary Tree](image/binary.jpg){width=60%}
 
 ## Three type of trees:
 
@@ -712,7 +713,7 @@ def preorder_list(self):  # return Python list of BST keys representing pre-orde
               _preorder(current.left,list)
               _preorder(current.right,list)
           return list
-          
+
       return _preorder(self.root,[])
 ```
 ### Level order list:
@@ -838,7 +839,7 @@ def find_max(self): # returns a tuple with max key and data in the BST
 <!-- ## Insertion: -->
 
 # Sorting:
-![Sorting Table:](table.jpg){width=80%}
+![Sorting Table:](image/table.jpg){width=80%}
 
 [Summery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
@@ -857,7 +858,7 @@ def bubble_sort(A):
 ```
 
 ## Insertion Sort:
-![Insertion Sort](1.png)
+![Insertion Sort](image/1.png)
 
 ### Code:
 
@@ -881,7 +882,7 @@ def insertion_sort(alist):
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
 ## Selection Sort:
-![Selection Sort:](selec.jpg){width=50%}
+![Selection Sort:](image/selec.jpg){width=50%}
 
 * Find the minimum value in the list
 * Swap it with the value in the first position
@@ -910,7 +911,7 @@ def selection_sort(A):
 
 ## Merge Sort:
 
-![Merge Sort](2.png){ width=60%}
+![Merge Sort](image/2.png){ width=60%}
 
 ### Code:
 
@@ -969,7 +970,7 @@ print(myList)
 
 The time complexity in best way is **$O(nlog(n))$** and the worst case scenario is when is whole list already sorted so the time complexity is **$O(n^2)$**.
 
-![Quick Sort](QuickSort2.png)
+![Quick Sort](image/QuickSort2.png)
 
 ### Code:
 
