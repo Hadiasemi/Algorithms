@@ -86,7 +86,7 @@ def tostr(n,base):
   digits='0123456789ABCDEF'
   if n<base:
     return digits[n]
-  return tostr(n // base,base) + digits[n % base]
+  return tostr(n // base,base) + digits[n % base]  
 ```
 
 ### Example 4:
@@ -667,6 +667,10 @@ class OrderedList:
 
 # Binary Tree:
 
+The hight of binary tree is $log(n)$
+
+![BigO for Binary Tree](binary.jpg){width=60%}
+
 ## Three type of trees:
 
 * Full: leaf with no children or with to leaves
@@ -674,6 +678,7 @@ class OrderedList:
 * Perfect: all leaves and nodes are at the same level
 
 ![Trees](4.png)
+\cleardoublepage
 
 ## Traversal:
 
@@ -681,6 +686,57 @@ class OrderedList:
 * **In Order** :  l n r
 * **Post Order**: l r n
 
+### In OrderedList:
+
+```Python
+def inorder_list(self): # return Python list of BST keys representing in-order traversal of BST (LVR--->left visit right)
+    def _inorder(current,list):
+        if current != None:
+            _inorder(current.left,list)
+            list.append(current.key)
+            _inorder(current.right,list)
+        return list
+
+
+    return _inorder(self.root,[])
+```
+### PreOreder:
+
+```Python
+def preorder_list(self):  # return Python list of BST keys representing pre-order traversal of BST (VLR----> Visit Left Right)
+      def _preorder(current,list):
+          if current !=None:
+              list.append(current.key)
+              _preorder(current.left,list)
+              _preorder(current.right,list)
+          return list
+
+
+      return _preorder(self.root,[])
+```
+### Level order list:
+
+```Python
+
+def level_order_list(self):  # return Python list of BST keys representing level-order traversal of BST
+    # You MUST use your queue_array data structure from lab 3 to implement this method
+    q = Queue(25000) # Don't change this!
+    list1 = []
+    if self.root == None:
+        return None
+
+    q.enqueue(self.root) # adding whole root q Stack
+
+    while  q.is_empty()==False:
+        root=q.dequeue()
+        list1.append(root.key)
+        if root.left != None:
+            q.enqueue(root.left)
+        if root.right != None:
+            q.enqueue(root.right)
+
+    return list1
+```
 <!-- ![Traversal](4.png) -->
 ## Calculate the Hight:
 
@@ -691,8 +747,93 @@ def height(self,node):
   left=self.height(node.left)
   right=self.height(node.right)
   return 1 + max(left,right)
-
 ```
+
+## Insertion:
+
+```Python
+def insert(self, key, data=None): # inserts new node w/ key and data
+        # If an item with the given key is already in the BST,
+        # the data in the tree will be replaced with the new data
+        # Example creation of node: temp = TreeNode(key, data)
+        def _insert(key,cur_node,data):
+            if key <cur_node.key:
+                if cur_node.left == None:
+                    cur_node.left=TreeNode(key,data)
+                else:
+                    _insert(key,cur_node.left,data)
+            elif key> cur_node.key:
+                if cur_node.right==None:
+                    cur_node.right=TreeNode(key,data)
+                else:
+                    _insert(key,cur_node.right,data)
+            else:
+                cur_node.data=data # update the data
+            return cur_node
+
+
+        if self.root==None:
+            self.root=TreeNode(key,data)
+        else:
+            self.root=_insert(key,self.root,data)
+```
+
+## Search:
+
+```Python
+def search(self, key): # returns True if key is in a node of the tree, else False
+      def _search(key,current_node):
+          if key==current_node.key:
+              return True
+          elif key < current_node.key and current_node.left !=None:
+              return _search(key, current_node.left)
+          elif key>current_node.key and current_node.right !=None:
+              return _search(key, current_node.right)
+          return False
+
+
+      if self.root != None:
+          return _search(key,self.root)
+      else:
+          return False
+```
+
+## Min:
+
+```Python
+def find_min(self): # returns a tuple with min key and data in the BST
+      # returns None if the tree is empty
+      if self.is_empty():
+          return None
+      def _min(current):
+          if current is None:
+              return None
+          if current.left is None:
+              return current.key, current.data
+          return _min(current.left)
+
+
+      return _min(self.root)
+```
+
+## Max:
+
+```Python
+def find_max(self): # returns a tuple with max key and data in the BST
+      # returns None if the tree is empty
+      if self.is_empty():
+          return None
+      def _max(current):
+          if current is None:
+              return None
+          if current.right is None:
+              return current.key, current.data
+          return _max(current.right)
+
+      return _max(self.root)
+  ```
+
+
 \cleardoublepage
 
 <!-- ## Insertion: -->
@@ -869,3 +1010,24 @@ def quickSort(arr,low,high):
         quickSort(arr, low, pi-1)
         quickSort(arr, pi+1, high)
 ```
+## Heap Sort:
+
+if a node is at index i:
+
+  * its left child is at **2*i**.
+  * its right child is at **2*i+1**.
+  * its parent is at **$[\frac{i}{2}]$**.
+
+**Max Heap:** it is a complete binary and all node have greater than descending.
+
+**Min Heap:** it is a complete binary and all node have less than descending.
+
+### Insertion:
+
+The time of insertion is **O(1) to O(log(n))**.
+
+### Deletion:
+
+ The time of deletion is **O(log(n))**.
+
+ By deletion and saving the element we will get sorted list.
