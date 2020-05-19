@@ -695,9 +695,14 @@ def inorder_list(self): # return Python list of BST keys representing in-order t
             _inorder(current.left,list)
             list.append(current.key)
             _inorder(current.right,list)
+<<<<<<< HEAD
         return list
 
 
+=======
+
+        return list
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
     return _inorder(self.root,[])
 ```
 ### PreOreder:
@@ -710,8 +715,11 @@ def preorder_list(self):  # return Python list of BST keys representing pre-orde
               _preorder(current.left,list)
               _preorder(current.right,list)
           return list
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
       return _preorder(self.root,[])
 ```
 ### Level order list:
@@ -753,6 +761,7 @@ def height(self,node):
 
 ```Python
 def insert(self, key, data=None): # inserts new node w/ key and data
+<<<<<<< HEAD
         # If an item with the given key is already in the BST,
         # the data in the tree will be replaced with the new data
         # Example creation of node: temp = TreeNode(key, data)
@@ -776,6 +785,25 @@ def insert(self, key, data=None): # inserts new node w/ key and data
             self.root=TreeNode(key,data)
         else:
             self.root=_insert(key,self.root,data)
+=======
+      # If an item with the given key is already in the BST,
+      # the data in the tree will be replaced with the new data
+      # Example creation of node: temp = TreeNode(key, data)
+      def _insert(key,cur_node,data):
+          if key <cur_node.key:
+              if cur_node.left == None:
+                  cur_node.left=TreeNode(key,data)
+              else:
+                  _insert(key,cur_node.left,data)
+          elif key> cur_node.key:
+              if cur_node.right==None:
+                  cur_node.right=TreeNode(key,data)
+              else:
+                  _insert(key,cur_node.right,data)
+          else:
+              cur_node.data=data # update the data
+          return cur_node
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
 ```
 
 ## Search:
@@ -790,16 +818,25 @@ def search(self, key): # returns True if key is in a node of the tree, else Fals
           elif key>current_node.key and current_node.right !=None:
               return _search(key, current_node.right)
           return False
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
       if self.root != None:
           return _search(key,self.root)
       else:
           return False
 ```
+<<<<<<< HEAD
 
 ## Min:
 
+=======
+
+## Min:
+
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
 ```Python
 def find_min(self): # returns a tuple with min key and data in the BST
       # returns None if the tree is empty
@@ -812,7 +849,10 @@ def find_min(self): # returns a tuple with min key and data in the BST
               return current.key, current.data
           return _min(current.left)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a3722f58d57a79ba6a7475f1c2d28f7321dd6ca
       return _min(self.root)
 ```
 
