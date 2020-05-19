@@ -1,3 +1,3 @@
 # Algorithms
 
-The Pdf file in this repo **Summurise** the note for the Data Structure class.
+The Pdf file in this repo **Summurise** the notes for the Data Structure class.
