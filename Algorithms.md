@@ -36,6 +36,7 @@ header-includes:
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
 
+
 [Good LectureTutorial(Java)](https://www.cs.cmu.edu/~adamchik/15-121/lectures/)
 
 # The Steps for analyzing Algorithm:
@@ -670,9 +671,14 @@ class OrderedList:
 
 # Binary Tree:
 
-The hight of binary tree is $log(n)$
+<!-- The hight of binary tree is $log(n)$ -->
 
-![BigO for Binary Tree](image/binary.jpg){width=60%}
+<!-- ![BigO for Binary Tree](image/binary.jpg){width=60%} -->
+
+|       | Insert | search  |   min  |   max  | Transversals  | height |
+|:-----:|:------:|:-------:|:------:|:------:|:-------------:|:------:|
+| Big O | log(n) |  log(n) | log(n) | log(n) |      O(n)     |  O(n)  |
+
 
 ## Three type of trees:
 
@@ -680,7 +686,8 @@ The hight of binary tree is $log(n)$
 * Complete: fill up top to bottom and left to right
 * Perfect: all leaves and nodes are at the same level
 
-![Trees](4.png)
+![Trees](image/4.png)
+
 \cleardoublepage
 
 ## Traversal:
