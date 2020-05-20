@@ -851,7 +851,7 @@ def find_max(self): # returns a tuple with max key and data in the BST
 [Summery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
-![Bubble Sort](bubble-short.png){width=60%}
+![Bubble Sort](image/bubble-short.png){width=60%}
 ```Python
 def bubble_sort(A):
     for k in range(len(A)):
