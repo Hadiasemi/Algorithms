@@ -36,6 +36,9 @@ header-includes:
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
 
+
+[Good LectureTutorial(Java)](https://www.cs.cmu.edu/~adamchik/15-121/lectures/)
+
 # The Steps for analyzing Algorithm:
 
   * time
@@ -174,7 +177,8 @@ def search(item,node):
 ```
 
 # Stack(LIFO):
-![Common Data Structure Operation](table1.png)
+
+![Common Data Structure Operation](image/table1.png)
 
 ## Stack Array:
 
@@ -339,7 +343,7 @@ class Stack:
 
 
 
-![Queue](Data_Queue.png){width=30%}
+![Queue](image/Data_Queue.png){width=30%}
 
 
 
@@ -667,9 +671,14 @@ class OrderedList:
 
 # Binary Tree:
 
-The hight of binary tree is $log(n)$
+<!-- The hight of binary tree is $log(n)$ -->
 
-![BigO for Binary Tree](binary.jpg){width=60%}
+<!-- ![BigO for Binary Tree](image/binary.jpg){width=60%} -->
+
+|       | Insert | search  |   min  |   max  | Transversals  | height |
+|:-----:|:------:|:-------:|:------:|:------:|:-------------:|:------:|
+| Big O | log(n) |  log(n) | log(n) | log(n) |      O(n)     |  O(n)  |
+
 
 ## Three type of trees:
 
@@ -677,7 +686,8 @@ The hight of binary tree is $log(n)$
 * Complete: fill up top to bottom and left to right
 * Perfect: all leaves and nodes are at the same level
 
-![Trees](4.png)
+![Trees](image/4.png)
+
 \cleardoublepage
 
 ## Traversal:
@@ -697,6 +707,7 @@ def inorder_list(self): # return Python list of BST keys representing in-order t
             _inorder(current.right,list)
 
         return list
+
     return _inorder(self.root,[])
 ```
 ### PreOreder:
@@ -709,6 +720,7 @@ def preorder_list(self):  # return Python list of BST keys representing pre-orde
               _preorder(current.left,list)
               _preorder(current.right,list)
           return list
+
       return _preorder(self.root,[])
 ```
 ### Level order list:
@@ -750,23 +762,30 @@ def height(self,node):
 
 ```Python
 def insert(self, key, data=None): # inserts new node w/ key and data
-      # If an item with the given key is already in the BST,
-      # the data in the tree will be replaced with the new data
-      # Example creation of node: temp = TreeNode(key, data)
-      def _insert(key,cur_node,data):
-          if key <cur_node.key:
-              if cur_node.left == None:
-                  cur_node.left=TreeNode(key,data)
-              else:
-                  _insert(key,cur_node.left,data)
-          elif key> cur_node.key:
-              if cur_node.right==None:
-                  cur_node.right=TreeNode(key,data)
-              else:
-                  _insert(key,cur_node.right,data)
-          else:
-              cur_node.data=data # update the data
-          return cur_node
+        # If an item with the given key is already in the BST,
+        # the data in the tree will be replaced with the new data
+        # Example creation of node: temp = TreeNode(key, data)
+        def _insert(key,cur_node,data):
+            if key <cur_node.key:
+                if cur_node.left == None:
+                    cur_node.left=TreeNode(key,data)
+                else:
+                    _insert(key,cur_node.left,data)
+            elif key> cur_node.key:
+                if cur_node.right==None:
+                    cur_node.right=TreeNode(key,data)
+                else:
+                    _insert(key,cur_node.right,data)
+            else:
+                cur_node.data=data # update the data
+            return cur_node
+
+
+        if self.root==None:
+            self.root=TreeNode(key,data)
+        else:
+            self.root=_insert(key,self.root,data)
+
 ```
 
 ## Search:
@@ -827,12 +846,12 @@ def find_max(self): # returns a tuple with max key and data in the BST
 <!-- ## Insertion: -->
 
 # Sorting:
-![Sorting Table:](table.jpg){width=80%}
+![Sorting Table:](image/table.jpg){width=80%}
 
-[Summwery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
+[Summery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
-![Bubble Sort](bubble-short.png){width=60%}
+![Bubble Sort](image/bubble-short.png){width=60%}
 ```Python
 def bubble_sort(A):
     for k in range(len(A)):
@@ -846,7 +865,7 @@ def bubble_sort(A):
 ```
 
 ## Insertion Sort:
-![Insertion Sort](1.png)
+![Insertion Sort](image/1.png)
 
 ### Code:
 
@@ -870,7 +889,7 @@ def insertion_sort(alist):
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
 ## Selection Sort:
-![Selection Sort:](selec.jpg){width=50%}
+![Selection Sort:](image/selec.jpg){width=50%}
 
 * Find the minimum value in the list
 * Swap it with the value in the first position
@@ -899,7 +918,7 @@ def selection_sort(A):
 
 ## Merge Sort:
 
-![Merge Sort](2.png){ width=60%}
+![Merge Sort](image/2.png){ width=60%}
 
 ### Code:
 
@@ -958,7 +977,7 @@ print(myList)
 
 The time complexity in best way is **$O(nlog(n))$** and the worst case scenario is when is whole list already sorted so the time complexity is **$O(n^2)$**.
 
-![Quick Sort](QuickSort2.png)
+![Quick Sort](image/QuickSort2.png)
 
 ### Code:
 
@@ -1000,6 +1019,8 @@ def quickSort(arr,low,high):
 ```
 ## Heap Sort:
 
+[Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
+
 if a node is at index i:
 
   * its left child is at **2*i**.
@@ -1019,3 +1040,157 @@ The time of insertion is **O(1) to O(log(n))**.
  The time of deletion is **O(log(n))**.
 
  By deletion and saving the element we will get sorted list.
+
+### Code:
+
+ ```Python
+
+ class MaxHeap:
+
+     def __init__(self, capacity=50):
+         """Constructor creating an empty heap with default capacity = 50 but allows heaps of other capacities to be created."""
+         self.heap = [None]*(capacity+1)     # index 0 not used for heap
+         self.size = 0                       # empty heap
+
+
+     def enqueue(self, item): # nlog(n)
+         """inserts "item" into the heap
+         Raises IndexError if there is no room in the heap"""
+         if self.is_full():
+             raise IndexError
+         self.size +=1
+         self.heap[self.size]=item # Insert to the last element in the list
+         self.perc_up(self.size)
+
+
+     def peek(self):
+         """returns max without changing the heap
+         Raises IndexError if the heap is empty"""
+         if self.is_empty():
+             raise IndexError
+         return self.heap[1] # index one becuase we start from one not from index zero
+
+
+     def dequeue(self): # nlog(n)
+         """returns max and removes it from the heap and restores the heap property
+            Raises IndexError if the heap is empty"""
+         if self.is_empty():
+             raise IndexError
+         max=self.heap[1] # save the top element as the max
+         self.heap[1]=self.heap[self.size] # Replace the last element with the root
+         self.heap[self.size]=max  # Bring the max to the end of array
+         self.size -= 1
+         self.heap.pop()
+         self.perc_down(1) # perc down the root element(max) down
+         return max
+
+
+     def contents(self):
+         """returns a list of contents of the heap in the order it is stored internal to the heap.
+         (This may be useful for in testing your implementation.)
+         If heap is empty, returns empty list []"""
+         if self.is_empty():
+             return []
+
+         return self.heap[1:self.size+1]
+
+
+     def build_heap(self, alist):
+         """Discards the items in the current heap and builds a heap from
+         the items in alist using the bottom up method.  
+         If the capacity of the current heap is less than the number of
+         items in alist, the capacity of the heap will be increased to accommodate the items in alist"""
+
+
+         i = 0
+         self.size = len(alist)
+         while i < len(alist):
+             if i > self.get_capacity() - 1:
+                 self.heap.append(alist[i]) # We need to append becuase the capacity of list finish
+             else:
+                 self.heap[i + 1] = alist[i] # i+1 becuase we start at index 1 and index 0 is zero
+             i += 1
+         i = self.size
+         while i > 0:
+             self.perc_down(i)
+             i -= 1
+
+
+         # ----------------- Second Way ---------------------------#
+         # self.size = 0
+         # for i in range(len(alist)):
+         #     if i < len(self.heap) - 1:
+         #         self.heap[i + 1] = alist[i]  # taking values from alist and assigning them into the heap
+         #         self.size += 1  # counting size again
+         #     else:
+         #         self.heap.append(alist[i])  # if we've passed capacity, it's okay we'll just keep adding
+         #         self.size += 1
+         # for i in range(self.size, 0, -1):  # starting from the bottom, we want to perc everything down
+         #     self.perc_down(i)
+
+     def is_empty(self):
+         """returns True if the heap is empty, False otherwise"""
+         return self.size == 0
+
+
+     def is_full(self):
+         """returns True if the heap is full, False otherwise"""
+         return self.size == self.get_capacity()
+
+
+     def get_capacity(self):
+         """This is the maximum number of a entries the heap can hold, which is
+         1 less than the number of entries that the array allocated to hold the heap can hold"""
+         return len(self.heap)-1
+
+
+     def get_size(self):
+         """the actual number of elements in the heap, not the capacity"""
+         return self.size
+
+
+     def perc_down(self, i): #log(n)
+         """where the parameter i is an index in the heap and perc_down moves the element stored
+         at that location to its proper place in the heap rearranging elements as it goes."""
+
+
+         done = False
+         while not done and 2 * i <= self.size:  # at least one child
+             child1 = 2 * i
+             child2 = child1 + 1
+             if child2 <= self.size and self.heap[child1] < self.heap[child2]:  # two children and child2 is greater
+                 if self.heap[i] < self.heap[child2]: # Compare biggest child with the parent
+                     self.heap[i], self.heap[child2] = self.heap[child2], self.heap[i] # swap the element
+                     i = child2 #change index to child 2
+                 else:
+                     done = True
+             else:  # one child or child1 is smaller
+                 if self.heap[i] < self.heap[child1]: # child 1 is greater
+                     self.heap[i], self.heap[child1] = self.heap[child1], self.heap[i]
+                     i = child1
+                 else:
+                     done = True
+
+
+
+
+     def perc_up(self, i):
+         """where the parameter i is an index in the heap and perc_up moves the element stored
+         at that location to its proper place in the heap rearranging elements as it goes."""
+
+         while (i) // 2 >= 1:
+             if self.heap[i] > self.heap[i // 2]: # Check the current element with parent
+                 self.heap[i],self.heap[i//2]=self.heap[i//2],self.heap[i] # Swap the elements
+             i =i// 2
+
+
+     def heap_sort_ascending(self, alist):
+         """perform heap sort on input alist in ascending order
+         This method will discard the current contents of the heap, build a new heap using
+         the items in alist, and mutate alist to put the items in ascending order"""
+         self.build_heap (alist)
+         while self.size > 0:
+             maxValue = self.dequeue ()   # Pop the root elements
+             alist[self.size] = maxValue  # add to end of the least becuase of maximum at root
+
+```
