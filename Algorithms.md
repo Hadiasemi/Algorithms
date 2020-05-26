@@ -10,7 +10,7 @@ date:
 
 
 urlcolor: blue
-geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
+geometry: "left=1cm,right=1cm,top=2cm,bottom=2cm"
 
 header-includes:
 
@@ -699,7 +699,8 @@ class OrderedList:
 ### In OrderedList:
 
 ```Python
-def inorder_list(self): # return Python list of BST keys representing in-order traversal of BST (LVR--->left visit right)
+def inorder_list(self):
+# return Python list of BST keys representing in-order traversal of BST (LVR--->left visit right)
     def _inorder(current,list):
         if current != None:
             _inorder(current.left,list)
@@ -713,7 +714,8 @@ def inorder_list(self): # return Python list of BST keys representing in-order t
 ### PreOreder:
 
 ```Python
-def preorder_list(self):  # return Python list of BST keys representing pre-order traversal of BST (VLR----> Visit Left Right)
+def preorder_list(self):  
+# return Python list of BST keys representing pre-order traversal of BST (VLR-> Visit Left Right)
       def _preorder(current,list):
           if current !=None:
               list.append(current.key)
@@ -727,8 +729,9 @@ def preorder_list(self):  # return Python list of BST keys representing pre-orde
 
 ```Python
 
-def level_order_list(self):  # return Python list of BST keys representing level-order traversal of BST
-    # You MUST use your queue_array data structure from lab 3 to implement this method
+def level_order_list(self):  
+  # return Python list of BST keys representing level-order traversal of BST
+  # You MUST use your queue_array data structure from lab 3 to implement this method
     q = Queue(25000) # Don't change this!
     list1 = []
     if self.root == None:
@@ -791,7 +794,8 @@ def insert(self, key, data=None): # inserts new node w/ key and data
 ## Search:
 
 ```Python
-def search(self, key): # returns True if key is in a node of the tree, else False
+def search(self, key):
+# returns True if key is in a node of the tree, else False
       def _search(key,current_node):
           if key==current_node.key:
               return True
@@ -809,8 +813,9 @@ def search(self, key): # returns True if key is in a node of the tree, else Fals
 ## Min:
 
 ```Python
-def find_min(self): # returns a tuple with min key and data in the BST
-      # returns None if the tree is empty
+def find_min(self):
+  # returns a tuple with min key and data in the BST
+  # returns None if the tree is empty
       if self.is_empty():
           return None
       def _min(current):
@@ -863,7 +868,7 @@ def bubble_sort(A):
         if flag==0:
             break
 ```
-
+\cleardoublepage
 ## Insertion Sort:
 ![Insertion Sort](image/1.png)
 
@@ -1017,6 +1022,7 @@ def quickSort(arr,low,high):
         quickSort(arr, low, pi-1)
         quickSort(arr, pi+1, high)
 ```
+\cleardoublepage
 ## Heap Sort:
 
 [Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
@@ -1048,7 +1054,8 @@ The time of insertion is **O(1) to O(log(n))**.
  class MaxHeap:
 
      def __init__(self, capacity=50):
-         """Constructor creating an empty heap with default capacity = 50 but allows heaps of other capacities to be created."""
+"""Constructor creating an empty heap with default capacity = 50 but allows heaps
+ of other capacities to be created."""
          self.heap = [None]*(capacity+1)     # index 0 not used for heap
          self.size = 0                       # empty heap
 
@@ -1158,9 +1165,9 @@ The time of insertion is **O(1) to O(log(n))**.
          while not done and 2 * i <= self.size:  # at least one child
              child1 = 2 * i
              child2 = child1 + 1
-             if child2 <= self.size and self.heap[child1] < self.heap[child2]:  # two children and child2 is greater
-                 if self.heap[i] < self.heap[child2]: # Compare biggest child with the parent
-                     self.heap[i], self.heap[child2] = self.heap[child2], self.heap[i] # swap the element
+             if child2 <= self.size and self.heap[child1] < self.heap[child2]: # child2 > child1
+                 if self.heap[i] < self.heap[child2]: # child2 > parent
+                     self.heap[i], self.heap[child2] = self.heap[child2], self.heap[i]# swap the element
                      i = child2 #change index to child 2
                  else:
                      done = True
