@@ -1027,7 +1027,10 @@ def quickSort(arr,low,high):
 
 [Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 676994c7ad62f4f2c1ba875ae8c76e3852d02f72
 if a node is at index i:
 
   * its left child is at **2*i**.
@@ -1202,6 +1205,7 @@ The time of insertion is **O(1) to O(log(n))**.
              alist[self.size] = maxValue  # add to end of the least becuase of maximum at root
 
 ```
+<<<<<<< HEAD
 
 ## Hash Map:
 
@@ -1304,3 +1308,5 @@ class MyHashTable:
         return self.num_collisions
 
   ```
+=======
+>>>>>>> 676994c7ad62f4f2c1ba875ae8c76e3852d02f72
