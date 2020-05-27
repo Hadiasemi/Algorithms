@@ -10,7 +10,7 @@ date:
 
 
 urlcolor: blue
-geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
+geometry: "left=1cm,right=1cm,top=2cm,bottom=2cm"
 
 header-includes:
 
@@ -699,7 +699,8 @@ class OrderedList:
 ### In OrderedList:
 
 ```Python
-def inorder_list(self): # return Python list of BST keys representing in-order traversal of BST (LVR--->left visit right)
+def inorder_list(self):
+# return Python list of BST keys representing in-order traversal of BST (LVR--->left visit right)
     def _inorder(current,list):
         if current != None:
             _inorder(current.left,list)
@@ -713,7 +714,8 @@ def inorder_list(self): # return Python list of BST keys representing in-order t
 ### PreOreder:
 
 ```Python
-def preorder_list(self):  # return Python list of BST keys representing pre-order traversal of BST (VLR----> Visit Left Right)
+def preorder_list(self):  
+# return Python list of BST keys representing pre-order traversal of BST (VLR-> Visit Left Right)
       def _preorder(current,list):
           if current !=None:
               list.append(current.key)
@@ -727,8 +729,9 @@ def preorder_list(self):  # return Python list of BST keys representing pre-orde
 
 ```Python
 
-def level_order_list(self):  # return Python list of BST keys representing level-order traversal of BST
-    # You MUST use your queue_array data structure from lab 3 to implement this method
+def level_order_list(self):  
+  # return Python list of BST keys representing level-order traversal of BST
+  # You MUST use your queue_array data structure from lab 3 to implement this method
     q = Queue(25000) # Don't change this!
     list1 = []
     if self.root == None:
@@ -791,7 +794,8 @@ def insert(self, key, data=None): # inserts new node w/ key and data
 ## Search:
 
 ```Python
-def search(self, key): # returns True if key is in a node of the tree, else False
+def search(self, key):
+# returns True if key is in a node of the tree, else False
       def _search(key,current_node):
           if key==current_node.key:
               return True
@@ -809,8 +813,9 @@ def search(self, key): # returns True if key is in a node of the tree, else Fals
 ## Min:
 
 ```Python
-def find_min(self): # returns a tuple with min key and data in the BST
-      # returns None if the tree is empty
+def find_min(self):
+  # returns a tuple with min key and data in the BST
+  # returns None if the tree is empty
       if self.is_empty():
           return None
       def _min(current):
@@ -863,7 +868,7 @@ def bubble_sort(A):
         if flag==0:
             break
 ```
-
+\cleardoublepage
 ## Insertion Sort:
 ![Insertion Sort](image/1.png)
 
@@ -1017,7 +1022,11 @@ def quickSort(arr,low,high):
         quickSort(arr, low, pi-1)
         quickSort(arr, pi+1, high)
 ```
+\cleardoublepage
 ## Heap Sort:
+
+[Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
+
 
 if a node is at index i:
 
@@ -1038,3 +1047,260 @@ The time of insertion is **O(1) to O(log(n))**.
  The time of deletion is **O(log(n))**.
 
  By deletion and saving the element we will get sorted list.
+
+### Code:
+
+ ```Python
+
+ class MaxHeap:
+
+     def __init__(self, capacity=50):
+"""Constructor creating an empty heap with default capacity = 50 but allows heaps
+ of other capacities to be created."""
+         self.heap = [None]*(capacity+1)     # index 0 not used for heap
+         self.size = 0                       # empty heap
+
+
+     def enqueue(self, item): # nlog(n)
+         """inserts "item" into the heap
+         Raises IndexError if there is no room in the heap"""
+         if self.is_full():
+             raise IndexError
+         self.size +=1
+         self.heap[self.size]=item # Insert to the last element in the list
+         self.perc_up(self.size)
+
+
+     def peek(self):
+         """returns max without changing the heap
+         Raises IndexError if the heap is empty"""
+         if self.is_empty():
+             raise IndexError
+         return self.heap[1] # index one becuase we start from one not from index zero
+
+
+     def dequeue(self): # nlog(n)
+         """returns max and removes it from the heap and restores the heap property
+            Raises IndexError if the heap is empty"""
+         if self.is_empty():
+             raise IndexError
+         max=self.heap[1] # save the top element as the max
+         self.heap[1]=self.heap[self.size] # Replace the last element with the root
+         self.heap[self.size]=max  # Bring the max to the end of array
+         self.size -= 1
+         self.heap.pop()
+         self.perc_down(1) # perc down the root element(max) down
+         return max
+
+
+     def contents(self):
+         """returns a list of contents of the heap in the order it is stored internal to the heap.
+         (This may be useful for in testing your implementation.)
+         If heap is empty, returns empty list []"""
+         if self.is_empty():
+             return []
+
+         return self.heap[1:self.size+1]
+
+
+     def build_heap(self, alist):
+         """Discards the items in the current heap and builds a heap from
+         the items in alist using the bottom up method.  
+         If the capacity of the current heap is less than the number of
+         items in alist, the capacity of the heap will be increased to accommodate the items in alist"""
+
+
+         i = 0
+         self.size = len(alist)
+         while i < len(alist):
+             if i > self.get_capacity() - 1:
+                 self.heap.append(alist[i]) # We need to append becuase the capacity of list finish
+             else:
+                 self.heap[i + 1] = alist[i] # i+1 becuase we start at index 1 and index 0 is zero
+             i += 1
+         i = self.size
+         while i > 0:
+             self.perc_down(i)
+             i -= 1
+
+
+         # ----------------- Second Way ---------------------------#
+         # self.size = 0
+         # for i in range(len(alist)):
+         #     if i < len(self.heap) - 1:
+         #         self.heap[i + 1] = alist[i]  # taking values from alist and assigning them into the heap
+         #         self.size += 1  # counting size again
+         #     else:
+         #         self.heap.append(alist[i])  # if we've passed capacity, it's okay we'll just keep adding
+         #         self.size += 1
+         # for i in range(self.size, 0, -1):  # starting from the bottom, we want to perc everything down
+         #     self.perc_down(i)
+
+     def is_empty(self):
+         """returns True if the heap is empty, False otherwise"""
+         return self.size == 0
+
+
+     def is_full(self):
+         """returns True if the heap is full, False otherwise"""
+         return self.size == self.get_capacity()
+
+
+     def get_capacity(self):
+         """This is the maximum number of a entries the heap can hold, which is
+         1 less than the number of entries that the array allocated to hold the heap can hold"""
+         return len(self.heap)-1
+
+
+     def get_size(self):
+         """the actual number of elements in the heap, not the capacity"""
+         return self.size
+
+
+     def perc_down(self, i): #log(n)
+         """where the parameter i is an index in the heap and perc_down moves the element stored
+         at that location to its proper place in the heap rearranging elements as it goes."""
+
+
+         done = False
+         while not done and 2 * i <= self.size:  # at least one child
+             child1 = 2 * i
+             child2 = child1 + 1
+             if child2 <= self.size and self.heap[child1] < self.heap[child2]: # child2 > child1
+                 if self.heap[i] < self.heap[child2]: # child2 > parent
+                     self.heap[i], self.heap[child2] = self.heap[child2], self.heap[i]# swap the element
+                     i = child2 #change index to child 2
+                 else:
+                     done = True
+             else:  # one child or child1 is smaller
+                 if self.heap[i] < self.heap[child1]: # child 1 is greater
+                     self.heap[i], self.heap[child1] = self.heap[child1], self.heap[i]
+                     i = child1
+                 else:
+                     done = True
+
+
+
+
+     def perc_up(self, i):
+         """where the parameter i is an index in the heap and perc_up moves the element stored
+         at that location to its proper place in the heap rearranging elements as it goes."""
+
+         while (i) // 2 >= 1:
+             if self.heap[i] > self.heap[i // 2]: # Check the current element with parent
+                 self.heap[i],self.heap[i//2]=self.heap[i//2],self.heap[i] # Swap the elements
+             i =i// 2
+
+
+     def heap_sort_ascending(self, alist):
+         """perform heap sort on input alist in ascending order
+         This method will discard the current contents of the heap, build a new heap using
+         the items in alist, and mutate alist to put the items in ascending order"""
+         self.build_heap (alist)
+         while self.size > 0:
+             maxValue = self.dequeue ()   # Pop the root elements
+             alist[self.size] = maxValue  # add to end of the least becuase of maximum at root
+
+```
+
+## Hash Map:
+
+```Python
+class MyHashTable:
+
+    def __init__(self, table_size=11):
+        self.table_size = table_size
+        self.hash_table = [[] for _ in range(table_size)] # List of lists implementation
+        self.num_items = 0
+        self.num_collisions = 0
+    def __repr__(self):
+        return "{}".format(self.hash_table)
+
+    def insert(self, key, value):
+        """Takes a key, and an item.  Keys are valid Python non-negative integers.
+        If key is negative, raise ValueError exception
+        The function will insert the key-item pair into the hash table based on the
+        hash value of the key mod the table size (hash_value = key % table_size)"""
+        if key < 0:
+            raise ValueError
+        hash_value = key % self.table_size
+        flag = True
+        i = 0
+        if self.hash_table[hash_value] == []:  # Check if the place I want to add is empty or not
+            self.hash_table[hash_value].append ((key, value))
+            self.num_items += 1
+        else:
+            while i < len (self.hash_table[hash_value]):
+                if self.hash_table[hash_value][i][0] == key:  # We already have this key
+                    self.hash_table[hash_value][i] = (key, value)
+                    flag = False
+                    break
+
+                i += 1
+            if flag:  # We don't have the key
+                self.hash_table[hash_value].append ((key, value))
+                self.num_collisions += 1
+
+
+                self.num_items += 1
+
+
+
+        if self.load_factor () > 1.5:
+
+            old_hash = self.hash_table
+            new_value = 2 * self.table_size + 1
+            self.hash_table = [[] for _ in range (new_value)]
+            self.table_size = 2 * self.table_size + 1
+
+
+            for i in range (len (old_hash)):
+                for j in old_hash[i]:
+                    new_hash = j[0] % new_value
+                    self.hash_table[new_hash] = j
+                    self.num_collisions -= 1
+
+
+
+
+
+    def get_item(self, key):
+        """Takes a key and returns the item from the hash table associated with the key.
+        If no key-item pair is associated with the key, the function raises a LookupError exception."""
+
+        hash_value = key % self.table_size
+        for i in range (len (self.hash_table[hash_value])):
+            if self.hash_table[hash_value][i][0] == key:
+                return self.hash_table[hash_value][i][1]
+        raise LookupError
+
+
+    def remove(self, key):
+        """Takes a key, removes the key-item pair from the hash table and returns the key-item pair.
+        If no key-item pair is associated with the key, the function raises a LookupError exception.
+        (The key-item pair should be returned as a tuple)"""
+        hash_value = key % self.table_size
+
+        for i in range(len(self.hash_table[hash_value])):
+            if self.hash_table[hash_value][i][0] == key:
+
+                self.num_items -=1
+                return self.hash_table[hash_value].pop(i)
+
+        raise LookupError
+
+
+
+    def load_factor(self):
+        """Returns the current load factor of the hash table"""
+        return self.num_items/self.table_size
+
+    def size(self):
+        """Returns the number of key-item pairs currently stored in the hash table"""
+        return self.num_items
+
+    def collisions(self):
+        """Returns the number of collisions that have occurred during insertions into the hash table"""
+        return self.num_collisions
+
+  ```
