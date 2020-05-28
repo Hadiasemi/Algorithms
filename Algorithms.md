@@ -46,6 +46,8 @@ header-includes:
   * power consumption
   * cpu registers
 
+![BigO](image/big_o_cheatsheet.png){width=70%}
+<!-- \cleardoublepage -->
 
 # Recursion :
 
@@ -338,6 +340,7 @@ class Stack:
         return self.num_items
 
 ```
+\cleardoublepage
 # Queue(FIFO):
 
 
@@ -667,6 +670,7 @@ class OrderedList:
         return helper(cur.next)
 
 ```
+\cleardoublepage
 
 # Binary Tree:
 
@@ -678,16 +682,13 @@ class OrderedList:
 |:-----:|:------:|:-------:|:------:|:------:|:-------------:|:------:|
 | Big O | log(n) |  log(n) | log(n) | log(n) |      O(n)     |  O(n)  |
 
-
 ## Three type of trees:
 
 * Full: leaf with no children or with to leaves
 * Complete: fill up top to bottom and left to right
 * Perfect: all leaves and nodes are at the same level
 
-![Trees](image/4.png)
-
-\cleardoublepage
+![Trees](image/4.png){width=80%}
 
 ## Traversal:
 
@@ -850,12 +851,13 @@ def find_max(self): # returns a tuple with max key and data in the BST
 <!-- ## Insertion: -->
 
 # Sorting:
-![Sorting Table:](image/table.jpg){width=80%}
+![Sorting Table:](image/table.jpg){width=60%}
 
 [Summery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
-![Bubble Sort](image/bubble-short.png){width=60%}
+![Bubble Sort](image/bubble-short.png){width=40%}
+
 ```Python
 def bubble_sort(A):
     for k in range(len(A)):
@@ -867,7 +869,9 @@ def bubble_sort(A):
         if flag==0:
             break
 ```
+
 \cleardoublepage
+
 ## Insertion Sort:
 ![Insertion Sort](image/1.png)
 
@@ -892,7 +896,10 @@ def insertion_sort(alist):
 
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
+\cleardoublepage
+
 ## Selection Sort:
+
 ![Selection Sort:](image/selec.jpg){width=50%}
 
 * Find the minimum value in the list
