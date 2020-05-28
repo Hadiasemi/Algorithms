@@ -36,7 +36,6 @@ header-includes:
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
 
-
 [Good LectureTutorial(Java)](https://www.cs.cmu.edu/~adamchik/15-121/lectures/)
 
 # The Steps for analyzing Algorithm:
@@ -1027,11 +1026,9 @@ def quickSort(arr,low,high):
 
 [Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
 
-<<<<<<< HEAD
+![Type of Heap](image/types_of_heaps.png){width=60%}
 
-=======
->>>>>>> 676994c7ad62f4f2c1ba875ae8c76e3852d02f72
-if a node is at index i:
+***BigO***: Heap enqueue, dequeue, perc_up, perc_down are O(log(n)), build heap is O(n).
 
   * its left child is at **2*i**.
   * its right child is at **2*i+1**.
@@ -1041,7 +1038,7 @@ if a node is at index i:
 
 **Min Heap:** it is a complete binary and all node have less than descending.
 
-### Insertion:
+<!-- ### Insertion:
 
 The time of insertion is **O(1) to O(log(n))**.
 
@@ -1049,7 +1046,7 @@ The time of insertion is **O(1) to O(log(n))**.
 
  The time of deletion is **O(log(n))**.
 
- By deletion and saving the element we will get sorted list.
+ By deletion and saving the element we will get sorted list. -->
 
 ### Code:
 
@@ -1205,9 +1202,11 @@ The time of insertion is **O(1) to O(log(n))**.
              alist[self.size] = maxValue  # add to end of the least becuase of maximum at root
 
 ```
-<<<<<<< HEAD
+
 
 ## Hash Map:
+
+Everything time complexity is O(1)
 
 ```Python
 class MyHashTable:
@@ -1308,5 +1307,3 @@ class MyHashTable:
         return self.num_collisions
 
   ```
-=======
->>>>>>> 676994c7ad62f4f2c1ba875ae8c76e3852d02f72
