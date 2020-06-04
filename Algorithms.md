@@ -36,7 +36,6 @@ header-includes:
 
 [Lecture Video for the Book](https://teklern.blogspot.com/p/blog-page.html)
 
-
 [Good LectureTutorial(Java)](https://www.cs.cmu.edu/~adamchik/15-121/lectures/)
 
 # The Steps for analyzing Algorithm:
@@ -47,6 +46,8 @@ header-includes:
   * power consumption
   * cpu registers
 
+![BigO](image/big_o_cheatsheet.png){width=70%}
+<!-- \cleardoublepage -->
 
 # Recursion :
 
@@ -339,6 +340,7 @@ class Stack:
         return self.num_items
 
 ```
+\cleardoublepage
 # Queue(FIFO):
 
 
@@ -668,6 +670,7 @@ class OrderedList:
         return helper(cur.next)
 
 ```
+\cleardoublepage
 
 # Binary Tree:
 
@@ -679,16 +682,13 @@ class OrderedList:
 |:-----:|:------:|:-------:|:------:|:------:|:-------------:|:------:|
 | Big O | log(n) |  log(n) | log(n) | log(n) |      O(n)     |  O(n)  |
 
-
 ## Three type of trees:
 
 * Full: leaf with no children or with to leaves
 * Complete: fill up top to bottom and left to right
 * Perfect: all leaves and nodes are at the same level
 
-![Trees](image/4.png)
-
-\cleardoublepage
+![Trees](image/4.png){width=80%}
 
 ## Traversal:
 
@@ -851,12 +851,13 @@ def find_max(self): # returns a tuple with max key and data in the BST
 <!-- ## Insertion: -->
 
 # Sorting:
-![Sorting Table:](image/table.jpg){width=80%}
+![Sorting Table:](image/table.jpg){width=60%}
 
 [Summery with animation](https://medium.com/@bill.shantang/8-classical-sorting-algorithms-d048eec3fdab)
 
 ## Bubble Sort:
-![Bubble Sort](image/bubble-short.png){width=60%}
+![Bubble Sort](image/bubble-short.png){width=40%}
+
 ```Python
 def bubble_sort(A):
     for k in range(len(A)):
@@ -868,7 +869,9 @@ def bubble_sort(A):
         if flag==0:
             break
 ```
+
 \cleardoublepage
+
 ## Insertion Sort:
 ![Insertion Sort](image/1.png)
 
@@ -893,7 +896,10 @@ def insertion_sort(alist):
 
 The $\theta(n)$ steps. Each steps have $\theta(n)$ swaps.
 
+\cleardoublepage
+
 ## Selection Sort:
+
 ![Selection Sort:](image/selec.jpg){width=50%}
 
 * Find the minimum value in the list
@@ -1027,7 +1033,9 @@ def quickSort(arr,low,high):
 
 [Reference Book](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html)
 
-if a node is at index i:
+![Type of Heap](image/types_of_heaps.png){width=60%}
+
+***BigO***: Heap enqueue, dequeue, perc_up, perc_down are O(log(n)), build heap is O(n).
 
   * its left child is at **2*i**.
   * its right child is at **2*i+1**.
@@ -1037,7 +1045,7 @@ if a node is at index i:
 
 **Min Heap:** it is a complete binary and all node have less than descending.
 
-### Insertion:
+<!-- ### Insertion:
 
 The time of insertion is **O(1) to O(log(n))**.
 
@@ -1045,7 +1053,7 @@ The time of insertion is **O(1) to O(log(n))**.
 
  The time of deletion is **O(log(n))**.
 
- By deletion and saving the element we will get sorted list.
+ By deletion and saving the element we will get sorted list. -->
 
 ### Code:
 
@@ -1201,3 +1209,108 @@ The time of insertion is **O(1) to O(log(n))**.
              alist[self.size] = maxValue  # add to end of the least becuase of maximum at root
 
 ```
+
+
+## Hash Map:
+
+Everything time complexity is O(1)
+
+```Python
+class MyHashTable:
+
+    def __init__(self, table_size=11):
+        self.table_size = table_size
+        self.hash_table = [[] for _ in range(table_size)] # List of lists implementation
+        self.num_items = 0
+        self.num_collisions = 0
+    def __repr__(self):
+        return "{}".format(self.hash_table)
+
+    def insert(self, key, value):
+        """Takes a key, and an item.  Keys are valid Python non-negative integers.
+        If key is negative, raise ValueError exception
+        The function will insert the key-item pair into the hash table based on the
+        hash value of the key mod the table size (hash_value = key % table_size)"""
+        if key < 0:
+            raise ValueError
+        hash_value = key % self.table_size
+        flag = True
+        i = 0
+        if self.hash_table[hash_value] == []:  # Check if the place I want to add is empty or not
+            self.hash_table[hash_value].append ((key, value))
+            self.num_items += 1
+        else:
+            while i < len (self.hash_table[hash_value]):
+                if self.hash_table[hash_value][i][0] == key:  # We already have this key
+                    self.hash_table[hash_value][i] = (key, value)
+                    flag = False
+                    break
+
+                i += 1
+            if flag:  # We don't have the key
+                self.hash_table[hash_value].append ((key, value))
+                self.num_collisions += 1
+
+
+                self.num_items += 1
+
+
+
+        if self.load_factor () > 1.5:
+
+            old_hash = self.hash_table
+            new_value = 2 * self.table_size + 1
+            self.hash_table = [[] for _ in range (new_value)]
+            self.table_size = 2 * self.table_size + 1
+
+
+            for i in range (len (old_hash)):
+                for j in old_hash[i]:
+                    new_hash = j[0] % new_value
+                    self.hash_table[new_hash] = j
+                    self.num_collisions -= 1
+
+
+
+
+
+    def get_item(self, key):
+        """Takes a key and returns the item from the hash table associated with the key.
+        If no key-item pair is associated with the key, the function raises a LookupError exception."""
+
+        hash_value = key % self.table_size
+        for i in range (len (self.hash_table[hash_value])):
+            if self.hash_table[hash_value][i][0] == key:
+                return self.hash_table[hash_value][i][1]
+        raise LookupError
+
+
+    def remove(self, key):
+        """Takes a key, removes the key-item pair from the hash table and returns the key-item pair.
+        If no key-item pair is associated with the key, the function raises a LookupError exception.
+        (The key-item pair should be returned as a tuple)"""
+        hash_value = key % self.table_size
+
+        for i in range(len(self.hash_table[hash_value])):
+            if self.hash_table[hash_value][i][0] == key:
+
+                self.num_items -=1
+                return self.hash_table[hash_value].pop(i)
+
+        raise LookupError
+
+
+
+    def load_factor(self):
+        """Returns the current load factor of the hash table"""
+        return self.num_items/self.table_size
+
+    def size(self):
+        """Returns the number of key-item pairs currently stored in the hash table"""
+        return self.num_items
+
+    def collisions(self):
+        """Returns the number of collisions that have occurred during insertions into the hash table"""
+        return self.num_collisions
+
+  ```
