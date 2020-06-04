@@ -1314,3 +1314,25 @@ class MyHashTable:
         return self.num_collisions
 
   ```
+
+# Graph:
+
+## Breath First Search:
+
+**Sudo Code:**
+
+ * While Q in not empty:
+ * dequeue the vertex, add to output
+ * queue adjacent vertices that have not been visited
+
+
+## Depth First search:
+
+**Sudo Code:**
+
+  * While stack not empty:
+  * pop the vertex
+  * if not visited
+      * Mark as visted
+      * add to the output
+  * push the adjacent
