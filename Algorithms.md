@@ -1317,11 +1317,9 @@ class MyHashTable:
 
 # Graph:
 
-<<<<<<< HEAD
 ![Graph](image/Graph.png){width=60%}
 
-=======
->>>>>>> 6be497bd79e63a896778ac53dd58ad4c57db0201
+
 ## Breath First Search:
 
 **Sudo Code:**
@@ -1476,5 +1474,3 @@ height: O(log(n))
 * If z is the root or the parent of z is red, repeat recoloring for z.
 
 ![](image/case2.jpg){width=60%}
-=======
->>>>>>> 6be497bd79e63a896778ac53dd58ad4c57db0201
