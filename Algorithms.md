@@ -512,10 +512,10 @@ class Queue:
             self.front=self.front.rest
             return temp
         if self.front is None:
-            i=self.rear
-            while i is not None:
-                temp=i.value
-                i=i.rest
+            rear=self.rear
+            while rear is not None: # bring back to front
+                temp=rear.value
+                rear=rear.rest
                 self.front=Node(temp,self.front)
                 self.rear=self.rear.rest
             temp = self.front.value
