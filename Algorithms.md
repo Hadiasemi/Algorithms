@@ -513,7 +513,7 @@ class Queue:
             return temp
         if self.front is None:
             rear=self.rear
-            while rear is not None: # bring back to front
+            while rear is not None: # bring back to frontgi
                 temp=rear.value
                 rear=rear.rest
                 self.front=Node(temp,self.front)
@@ -1449,7 +1449,9 @@ if __name__ == '__main__':
 ## Red Black Tree:
 
 ### Time complexity:
+
 height: O(log(n))
+
 ![BigO Red Black Tree](image/Red.jpeg){width=50%}
 
 ## Recognizing:
