@@ -1314,3 +1314,161 @@ class MyHashTable:
         return self.num_collisions
 
   ```
+
+# Graph:
+
+![Graph](image/Graph.png){width=60%}
+
+## Breath First Search:
+
+**Sudo Code:**
+
+ * While Q in not empty:
+ * dequeue the vertex, add to output
+ * queue adjacent vertices that have not been visited
+
+
+## Depth First search:
+
+**Sudo Code:**
+
+  * While stack not empty:
+  * pop the vertex
+  * if not visited
+      * Mark as visted
+      * add to the output
+  * push the adjacent
+
+## Top Logical Sorting:
+
+* while stack not empty:
+* pop the output of vertex
+* reduce the indegree of all adjacent vertex
+* push all new vertex with indegree of zero
+
+
+```Python
+
+from sys import argv
+from stack_array import *
+
+def tsort(vertices):
+    '''
+    * Performs a topological sort of the specified directed acyclic graph.  The
+    * graph is given as a list of vertices where each pair of vertices represents
+    * an edge in the graph.  The resulting string return value will be formatted
+    * identically to the Unix utility {@code tsort}.  That is, one vertex per
+    * line in topologically sorted order.
+    *
+    * Raises a ValueError if:
+    *   - vertices is emtpy with the message "input contains no edges"         Done
+    *   - vertices has an odd number of vertices (incomplete pair) with the   Done
+    *     message "input contains an odd number of tokens"
+    *   - the graph contains a cycle (isn't acyclic) with the message
+    *     "input contains a cycle"'''
+#---------------------------error checking---------------------------------------#
+    if vertices==[]:
+        raise ValueError("input contains no edges")
+    elif len(vertices)%2==1:
+        raise ValueError("input contains an odd number of tokens")
+
+
+    stack=Stack(len(vertices))
+
+    data={}
+    # ---------------------Build the dictionery of vertex---------------------------#
+
+    for i in range(0, len(vertices), 2):
+        if vertices[i] not in data.keys():  # Build new Keys
+            data[vertices[i]] = [vertices[i], [], 0]
+        if vertices[i + 1] not in data.keys():  # Build new keys for second element
+            data[vertices[i + 1]] = [vertices[i + 1], [], 0]
+        data[vertices[i]][1].append(vertices[i + 1])  # appending second element to first vertices
+        data[vertices[i + 1]][2] += 1  # incerease the indegree
+
+    list2 = ''
+    count = 0  # count the number of element in the list
+    # ---------------------------Top logical sorting----------------------------------#
+
+    find_zero(data, stack, list2)
+    while not stack.is_empty():
+        value = stack.peek()
+        list2 += stack.pop() + "\n"
+        count += 1
+
+        for vertc in data[value][1]:  # Go to the peek in stak and get the value vertices and decrease one
+            data[vertc][2] -= 1  # decrease indegree
+
+        find_zero(data, stack, list2)
+
+    if count != len(data):  # Graph contain cycle
+        raise ValueError("input contains a cycle")
+
+    return list2.strip()
+
+
+def find_zero(data, stack, list2):  # helper function for finding the elements that indegree is zero
+    for item in data.items():
+        if item[1][2] == 0:  # check and push the elemnt which indegree is zero
+            stack.push(item[0])
+            item[1][2] = -1  # already take out the element to the stach
+    return stack
+
+
+
+
+
+def main():
+    '''Entry point for the tsort utility allowing the user to specify
+       a file containing the edge of the DAG'''
+    if len(argv) != 2:
+        print("Usage: python3 tsort.py <filename>")
+        exit()
+    try:
+        f = open(argv[1], 'r')
+    except FileNotFoundError as e:
+        print(argv[1], 'could not be found or opened')
+        exit()
+
+    vertices = []
+    for line in f:
+        vertices += line.split()
+
+    try:
+        result = tsort(vertices)
+        print(result)
+    except Exception as e:
+        print(e)
+
+if __name__ == '__main__':
+    main()
+```
+
+## Red Black Tree:
+
+### Time complexity:
+height: O(log(n))
+![BigO Red Black Tree](image/Red.jpeg){width=50%}
+
+## Recognizing:
+* **Root Property**: The root is Black
+* **External Property:** Every external node is Black
+* **Red property:** The children of a red node are Black
+* **Depth property:** All external nodes have the same black Depth.
+
+## Insertion:
+**Case1:**
+
+* Relabel the nodes to a, b and c from left to right.
+
+* Replace the original z with b. Make a and c its children. Keep inorder relationships unchanged.
+
+![](image/case1.jpg){width=60%}
+
+**Case2:**
+
+* Color y and s to black and z to red
+
+* If z is the root or the parent of z is red, repeat recoloring for z.
+
+![](image/case2.jpg){width=60%}
