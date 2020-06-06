@@ -1314,6 +1314,173 @@ class MyHashTable:
         return self.num_collisions
 
   ```
+### Hash Quad:
+
+```Python
+class HashTable:
+
+    def __init__(self, table_size):         # can add additional attributes
+        self.table_size = table_size        # initial table size
+        self.hash_table = [None]*table_size # hash table
+        self.num_items = 0                  # empty hash table
+
+    def insert(self, key, value):
+        """ Inserts an entry into the hash table (using Horner hash function to determine index,
+        and quadratic probing to resolve collisions).
+        The key is a string (a word) to be entered, and value is any object (e.g. Python List).
+        If the key is not already in the table, the key is inserted along with the associated value
+        If the key is is in the table, the new value replaces the existing value.
+        When used with the concordance, value is a Python List of line numbers.
+        If load factor is greater than 0.5 after an insertion, hash table size should be increased (doubled + 1)."""
+
+
+        if self.hash_table[self.horner_hash(key)]==None:
+            self.hash_table[self.horner_hash(key)]=(key,value)
+            self.num_items +=1
+        else:
+            i=0
+            index = self.horner_hash (key)
+            if self.hash_table[index] !=None:  # update the value
+                if self.hash_table[index][0]==key:
+                    self.hash_table[index]=(key,value)
+                else: # is not mached
+                    i=0
+                    while self.hash_table[index] !=None:
+                        index=(index+(i**2))%self.table_size
+                        i+=1
+                        # if index == self.table_size and self.hash_table[index] != None:#ask question
+                        #     i = 0
+                        #     index = 0
+
+                    self.hash_table[index]=(key,value)
+                    self.num_items+=1
+            else:
+                self.hash_table[index] = (key, value)
+                self.num_items += 1
+
+#-----------------Rehashing---------------------------#
+        if self.get_load_factor()>0.5:
+            # old_size=self.table_size
+            old_hash=self.hash_table.copy()
+            self.num_items=0
+            self.table_size = 2 * self.table_size + 1
+            self.hash_table=[None]*self.table_size
+
+            for i in old_hash:
+                    if i != None:
+                        index = self.horner_hash (i[0])
+                        if self.hash_table[index] != None:  # update the value
+                            if self.hash_table[index][0] == i[0]:
+                                self.hash_table[index] = (i[0], i[1])
+                            else:  # is not mached
+                                j = 0
+                                while self.hash_table[index] != None:
+                                    index = (index + (j ** 2)) % self.table_size
+                                    j += 1
+                                    # if index==self.table_size and self.hash_table[index] !=None:
+                                    #     j=0
+                                    #     index=0
+
+
+                                self.hash_table[index] = (i[0], i[1])
+                                self.num_items += 1
+
+                        else:
+                            self.hash_table[index] = (i[0], i[1])
+                            self.num_items += 1
+
+
+
+    def horner_hash(self, key):
+        """ Compute and return an integer from 0 to the (size of the hash table) - 1
+        Compute the hash value by using Horner’s rule, as described in project specification."""
+        sum_key = 0
+        if len(key)>8:
+            for i in range(8):
+                sum_key += ord(key[i]) * 31 ** ( 8 - 1 - i)
+
+        else:
+            for i in range(len(key)):
+                sum_key += ord(key[i]) * 31 ** (len(key) - 1 - i)
+
+        index = sum_key % self.table_size
+        return index
+
+    def in_table(self, key):
+        """ Returns True if key is in an entry of the hash table, False otherwise. Must be O(1)."""
+        if self.num_items==0:
+            return False
+
+        index = self.get_index(key)
+        if index ==None:
+            return False
+
+        if self.hash_table[index][0] == key:
+            return True
+        else:
+            return False
+
+
+
+    def get_index(self, key):
+        """ Returns the index of the hash table entry containing the provided key.
+        If there is not an entry with the provided key, returns None. Must be O(1)."""
+
+        index=self.horner_hash(key)
+        if self.hash_table[index] != None:
+            if self.hash_table[index][0]==key:
+                return index
+            else:
+                j = 0
+                while self.hash_table[index] != None:
+                    index = (index + (j ** 2)) % self.table_size
+                    if self.hash_table[index]!=None:
+                        if self.hash_table[index][0]==key:
+                            return index
+
+                    j += 1
+                return None
+
+
+    def get_all_keys(self):
+        """ Returns a Python list of all keys in the hash table."""
+        list_key=[]
+        if self.num_items==0:
+            return []
+        else:
+            for i in range(self.table_size):
+
+                if self.hash_table[i]!=None:
+                    list_key.append(self.hash_table[i][0])
+        return list_key
+
+
+
+    def get_value(self, key):
+        """ Returns the value (for concordance, list of line numbers) associated with the key.
+        If key is not in hash table, returns None. Must be O(1)."""
+        if self.num_items==0:
+            return None
+
+        if self.in_table(key)==False:
+            return
+        else:
+            return self.hash_table[self.get_index(key)][1]
+
+
+
+    def get_num_items(self):
+        """ Returns the number of entries (words) in the table. Must be O(1)."""
+        return self.num_items
+
+    def get_table_size(self):
+        """ Returns the size of the hash table."""
+        return self.table_size
+
+    def get_load_factor(self):
+        """ Returns the load factor of the hash table (entries / table_size)."""
+        return self.num_items/self.table_size
+```
 
 # Graph:
 
