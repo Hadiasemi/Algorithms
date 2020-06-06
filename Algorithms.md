@@ -1270,10 +1270,6 @@ class MyHashTable:
                     self.hash_table[new_hash] = j
                     self.num_collisions -= 1
 
-
-
-
-
     def get_item(self, key):
         """Takes a key and returns the item from the hash table associated with the key.
         If no key-item pair is associated with the key, the function raises a LookupError exception."""
