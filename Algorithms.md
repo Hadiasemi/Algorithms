@@ -586,6 +586,7 @@ class Queue:
 \end{table}
 
 
+
 ```Python
 class Node:
     """Node for use with doubly-linked list"""
