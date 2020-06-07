@@ -352,6 +352,24 @@ class Stack:
 
 ## Array:
 
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+                                 & \textbf{Best} & \textbf{Average} & \textbf{Worst} \\ \hline
+\textbf{enqueue(item) end}       &               & O(1)             &                \\ \hline
+\textbf{enqueue(item) beginning} &               & O(n)             &                \\ \hline
+\textbf{enqueue(item) middle}    &               & O(n)             &                \\ \hline
+\textbf{dequeue()}               &               & O(n)             &                \\ \hline
+\textbf{remove(item)}            &               & O(n)             &                \\ \hline
+\textbf{search(item)}            & O(1)          & O(n)             & O(n)           \\ \hline
+\textbf{get(index)}              &               & O(1)             &                \\ \hline
+\textbf{index(item)}             &               & O(n)             &                \\ \hline
+\textbf{set(index)}              &               & O(1)             &                \\ \hline
+\end{tabular}
+\end{table}
+
+
 ```Python
 # Queue ADT - circular array implementation
 
@@ -425,11 +443,26 @@ class Queue:
        """Returns the number of items in the queue
        Must be O(1)"""
        return self.num_items
-
-
-
 ```
+\cleardoublepage
 ## NodeList:
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+                                 & \textbf{Average} \\ \hline
+\textbf{enqueue(item) end}       & O(1) w tail      \\ \hline
+\textbf{enqueue(item) beginning} & O(1)             \\ \hline
+\textbf{enqueue(item) middle}    & O(n)             \\ \hline
+\textbf{dequeue()}               & O(1)             \\ \hline
+\textbf{dequeue\_all(item)}      & O(n)             \\ \hline
+\textbf{remove(item)}            & O(n)             \\ \hline
+\textbf{get(index)}              & O(n)             \\ \hline
+\textbf{index(item)}             & O(n)             \\ \hline
+\textbf{set(index)}              & O(n)             \\ \hline
+\end{tabular}
+\end{table}
 
 ```Python
 # NodeList version of ADT Queue
@@ -513,7 +546,7 @@ class Queue:
             return temp
         if self.front is None:
             rear=self.rear
-            while rear is not None: # bring back to frontgi
+            while rear is not None: # bring back to front
                 temp=rear.value
                 rear=rear.rest
                 self.front=Node(temp,self.front)
