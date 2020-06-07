@@ -533,6 +533,8 @@ class Queue:
 
 # Doubly Link List:
 
+![](image/doubly_link_with_sentinel.png)
+
 ```Python
 class Node:
     """Node for use with doubly-linked list"""
@@ -1572,7 +1574,8 @@ def tsort(vertices):
     return list2.strip()
 
 
-def find_zero(data, stack, list2):  # helper function for finding the elements that indegree is zero
+def find_zero(data, stack, list2):  
+  # helper function for finding the elements that indegree is zero
     for item in data.items():
         if item[1][2] == 0:  # check and push the elemnt which indegree is zero
             stack.push(item[0])
