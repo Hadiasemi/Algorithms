@@ -527,13 +527,31 @@ class Queue:
         Must be O(1)"""
         return self.num_items
 
-
-
 ```
 
 # Doubly Link List:
 
-![](image/doubly_link_with_sentinel.png)
+![](image/doubly_link_with_sentinel.png){width=60%}
+
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+                                  & \textbf{AVG} \\ \hline
+\textbf{add(item)}                & O(n)         \\ \hline
+\textbf{pop(index)}               & O(n)         \\ \hline
+\textbf{remove(item)}             & O(n)         \\ \hline
+\textbf{delete\_tail()}           & O(1)         \\ \hline
+\textbf{is\_empty()}              & O(1)         \\ \hline
+\textbf{size()}                   & O(n)         \\ \hline
+\textbf{index(item)}              & O(n)         \\ \hline
+\textbf{search(item)}             & O(n)         \\ \hline
+\textbf{python\_list()}           & O(n)         \\ \hline
+\textbf{python\_list\_reversed()} & O(n)         \\ \hline
+\end{tabular}
+\end{table}
+
 
 ```Python
 class Node:
