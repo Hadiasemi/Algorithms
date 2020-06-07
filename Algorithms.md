@@ -1678,6 +1678,8 @@ height: O(log(n))
 * **Red property:** The children of a red node are Black
 * **Depth property:** All external nodes have the same black Depth.
 
+![](image/Red_black.jpg)
+
 ## Insertion:
 **Case1:**
 
