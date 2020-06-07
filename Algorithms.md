@@ -736,6 +736,8 @@ class OrderedList:
 |:-----:|:------:|:-------:|:------:|:------:|:-------------:|:------:|
 | Big O | log(n) |  log(n) | log(n) | log(n) |      O(n)     |  O(n)  |
 
+Worst case for the insertion of a key into a "standard" Binary Search Tree O(n)
+
 ## Three type of trees:
 
 * Full: leaf with no children or with to leaves
@@ -1047,41 +1049,72 @@ The time complexity in best way is **$O(nlog(n))$** and the worst case scenario 
 ### Code:
 
 ```Python
-def partition(arr,low,high):
-    i = ( low-1 )         # index of smaller element
-    pivot = arr[high]     # pivot
+import random
 
-    for j in range(low , high):
+PIVOT_FIRST = True
+total_count = 0
 
-        # If current element is smaller than or
-        # equal to pivot
-        if   arr[j] <= pivot:
+def quick_sort(alist):
+   global total_count
+   total_count = 0
+   quick_sort_helper(alist,0,len(alist)-1)
+   return total_count
 
-            # increment index of smaller element
-            i = i+1
-            arr[i],arr[j] = arr[j],arr[i]
+def quick_sort_helper(alist,first,last):
+   if first<last:
 
-    arr[i+1],arr[high] = arr[high],arr[i+1]
-    return ( i+1 )
+       splitpoint = partition(alist,first,last)
+       quick_sort_helper(alist,first,splitpoint-1)
+       quick_sort_helper(alist,splitpoint+1,last)
 
-# The main function that implements QuickSort
-# arr[] --> Array to be sorted,
-# low  --> Starting index,
-# high  --> Ending index
+def partition(alist,first,last):
+   global total_count
+   piv_index = first
+   if not PIVOT_FIRST: # write code for selecting pivot based on median of 3 (first/mid/last)
+      mid=(first+last)//2
+      max_val=max(alist[first], alist[mid], alist[last])
 
-# Function to do Quick sort
-def quickSort(arr,low,high):
-    if low < high:
+      min_val=min(alist[first], alist[mid], alist[last])
+      # print (mid, max_val,min_val)
+      if alist[first] is not max_val and alist[first] is not min_val:
+          piv_index = first
+      elif alist[last] is not max_val and alist[last] is not min_val:
+          piv_index = last
+      else:
+          piv_index = mid
 
-        # pi is partitioning index, arr[p] is now
-        # at right place
-        pi = partition(arr,low,high)
 
-        # Separately sort elements before
-        # partition and after partition
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
-```
+
+   pivotvalue = alist[piv_index]
+   alist[piv_index] = alist[first] # move pivot out of the way
+   alist[first] = pivotvalue       # by swapping with first element
+
+   leftmark = first+1              # left index
+   rightmark = last                # right index
+
+   done = False
+   while not done:
+
+       while leftmark <= rightmark and alist[leftmark] <= pivotvalue:
+           total_count += 1
+           leftmark = leftmark + 1
+
+       while alist[rightmark] >= pivotvalue and rightmark >= leftmark:
+           total_count += 1
+           rightmark = rightmark -1
+
+       if rightmark < leftmark:
+           done = True
+       else:
+           temp = alist[leftmark]
+           alist[leftmark] = alist[rightmark]
+           alist[rightmark] = temp
+
+   alist[first] = alist[rightmark]      # swap pivotvalue and element at rightmark
+   alist[rightmark] = pivotvalue
+
+   return rightmark                     # return splitpoint
+   ```
 \cleardoublepage
 ## Heap Sort:
 
