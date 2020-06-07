@@ -1556,7 +1556,7 @@ class HashTable:
       * Mark as visted
       * add to the output
   * push the adjacent
-<<<<<<< HEAD
+
 
 ## Top Logical Sorting:
 
@@ -1564,6 +1564,7 @@ class HashTable:
 * pop the output of vertex
 * reduce the indegree of all adjacent vertex
 * push all new vertex with indegree of zero
+
 
 
 ```Python
